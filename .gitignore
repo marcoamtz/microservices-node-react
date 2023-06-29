@@ -34,3 +34,4 @@ src/playground
 .yalc
 yalc.lock
 .parcel-cache
+.next
