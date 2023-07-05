@@ -11,12 +11,12 @@ export const getServerSideProps = async (context) => {
   return { props: { currentUser } };
 };
 
-const Signup = ({ currentUser }) => {
+const Signin = ({ currentUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const { doRequest, errors } = useRequest({
-    url: "/api/users/signup",
+    url: "/api/users/signin",
     method: "post",
     body: {
       email,
@@ -42,7 +42,7 @@ const Signup = ({ currentUser }) => {
   return (
     <BaseLayout currentUser={currentUser}>
       <form onSubmit={handleSubmit}>
-        <h1>Sign up</h1>
+        <h1>Sign in</h1>
         <div className="form-group">
           <label>Email Address</label>
           <input className="form-control" value={email} onChange={handleEmailChange} />
@@ -52,10 +52,10 @@ const Signup = ({ currentUser }) => {
           <input type="password" className="form-control" value={password} onChange={handlePasswordChange} />
         </div>
         {errors}
-        <button className="btn btn-primary">Sign up</button>
+        <button className="btn btn-primary">Sign in</button>
       </form>
     </BaseLayout>
   );
 };
 
-export default Signup;
+export default Signin;

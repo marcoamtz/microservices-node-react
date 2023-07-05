@@ -1,14 +1,18 @@
-import buildClient from "../api/buildClient";
+import getCurrentUser from "../api/getCurrentUser";
+import BaseLayout from "../components/BaseLayout";
 
 export const getServerSideProps = async (context) => {
-  const client = buildClient(context);
-  const { data } = await client.get("/api/users/currentuser");
+  const currentUser = await getCurrentUser(context);
 
-  return { props: { currentUser: data.currentUser } };
+  return { props: { currentUser } };
 };
 
 const Landing = ({ currentUser }) => {
-  return currentUser ? <h1>You are signed in</h1> : <h1>You are NOT signed in</h1>;
+  return (
+    <BaseLayout currentUser={currentUser}>
+      {currentUser ? <h1>You are signed in</h1> : <h1>You are NOT signed in</h1>}
+    </BaseLayout>
+  );
 };
 
 export default Landing;
